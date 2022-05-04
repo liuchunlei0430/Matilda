@@ -68,13 +68,13 @@ represents the number of ATAC expressions.
 
 `dataset’: Name of the dataset.
 
-### Dataset
+## Dataset
 The processed data from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
 
 ```
 https://drive.google.com/drive/folders/1uuSIiURzAUtu7r9V2wHwXbs7S_1srGg9?usp=sharing
 ```
 
-### Output
+## Output
 
 After training, Matilda will output the average accuracy before augmentation and after augmentation.
