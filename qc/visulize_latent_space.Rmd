@@ -1,0 +1,61 @@
+
+# Load
+## load package
+```{r}
+library(SingleCellExperiment)
+library(data.table)
+library(scater)
+library(glue)
+library(ggplot2)
+library(ggpubr)
+library(umap)
+library(Seurat)
+make_sce <- function(expr, label){
+  sce <- SingleCellExperiment(list(logcounts=expr))
+  sce$celltype <- as.factor(label)
+  return(sce)
+}
+```
+
+
+```{r}
+#dataset_name = "Ma et al. (GSE140203)"
+#dataset_name = "Swanson et al. (GSE158013)"
+dataset_name = "Ramaswamy et al. (GSE166489)"
+```
+
+###################umap
+# read simulated data
+```{r}
+if (dataset_name == "Ramaswamy et al. (GSE166489)"){
+  test.sim <- t(fread(glue("../result/dimension_reduction/Ramaswamy et al. (GSE166489)/seed1_fold1_ls.csv")))
+  test.sim <- test.sim[2:dim(test.sim)[1],]
+  test.cty.sim <-  t(fread(glue("../result/dimension_reduction/Ramaswamy et al. (GSE166489)/seed1_fold1_ls_label.csv")))[2,]
+  
+  colnames(test.sim) <- c(1:dim(test.sim)[2])
+  seu_control<- CreateSeuratObject(counts = test.sim)
+  seu_control$celltype <- test.cty.sim
+  seu_control <- (seu_control) %>% FindVariableFeatures() %>% ScaleData() %>% RunPCA()
+  seu_control <- RunUMAP(seu_control,dims = 1:10)
+  
+  seu_umap_dims <- seu_control[["umap"]]@cell.embeddings
+  kmeans_res <- kmeans(seu_umap_dims, centers = length(table(test.cty.sim)))
+  graph <- bluster::makeSNNGraph(seu_umap_dims)
+  communities <- igraph::cluster_louvain(graph)
+  SNN_res <- factor(communities$membership)
+        
+  p1 <- DimPlot(seu_control, reduction = 'umap',group.by = 'celltype') + NoLegend()
+  
+  ari <- mclust::adjustedRandIndex(seu_control$celltype, kmeans_res$cluster) 
+  nmi <- aricode::NMI(seu_control$celltype, kmeans_res$cluster) 
+  ami <- aricode::AMI(seu_control$celltype, kmeans_res$cluster) 
+  ent <- aricode::RI(seu_control$celltype, kmeans_res$cluster) 
+  
+  ari
+  nmi
+  ami
+  ent
+  p1
+}
+```
+
