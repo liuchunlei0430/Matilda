@@ -13,7 +13,14 @@ git clone https://github.com/liuchunlei0430/Matilda-Multi-task-learning-from-sin
 The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum.
 
 ## Preparing intput for Matilda
-Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the input for Matilda, modifying dataset paths in data_processing_code/data_processing.Rmd.
+### Dataset
+The processed data from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
+
+```
+https://drive.google.com/drive/folders/1uuSIiURzAUtu7r9V2wHwXbs7S_1srGg9?usp=sharing
+```
+
+Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the input for Matilda: 1) download the datasets 2) modifying dataset paths in data_processing_code/data_processing.Rmd.
 
 ## Running Matilda
 In terminal, run
@@ -68,12 +75,6 @@ represents the number of ATAC expressions.
 
 `dataset`: Name of the dataset.
 
-## Dataset
-The processed data from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
-
-```
-https://drive.google.com/drive/folders/1uuSIiURzAUtu7r9V2wHwXbs7S_1srGg9?usp=sharing
-```
 
 ## Output
 
