@@ -62,11 +62,11 @@ represents the number of ATAC expressions.
 
 `fs`: Whether do feature selection or not.
 
-`save_latent_space’: Whether save the dimension reduction result or not.
+`save_latent_space`: Whether save the dimension reduction result or not.
 
-`save_simulated_result’: Whether save the simulation result or not.
+`save_simulated_result`: Whether save the simulation result or not.
 
-`dataset’: Name of the dataset.
+`dataset`: Name of the dataset.
 
 ## Dataset
 The processed data from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
