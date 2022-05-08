@@ -7,7 +7,7 @@ Matilda is developed using PyTorch 1.9.1 and requires 1 GPU to run.
 Matilda can be obtained by simply clonning the github repository:
 
 ```
-git clone https://github.com/liuchunlei0430/Matilda-Multi-task-learning-from-single-cell-multimodal-omics-with-Matilda.git
+git clone https://github.com/liuchunlei0430/Matilda.git
 ```
 
 The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum.
