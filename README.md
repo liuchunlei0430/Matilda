@@ -1,7 +1,8 @@
-# Matilda: Multi-task learning from single cell multimodal omics with Matilda
+# Matilda: Multi-task learning from single cell multimodal omics
 
-Matilda is a multi-task framework for learning from single-cell multimodal omics data. Matilda leverages the information from multimodal data and uses a neural network to train the model, enabling the tasks including data simulation, dimension reduction, visualization, classification, and feature selection. For more information, please see Matilda manuscript.
-Matilda is developed using PyTorch 1.9.1 and requires 1 GPU to run.
+Matilda is a multi-task framework for learning from single-cell multimodal omics data. Matilda leverages the information from the multi-modality of such data and trains a neural network model to simultaneously learn multiple tasks including data simulation, dimension reduction, visualization, classification, and feature selection.
+
+Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run.
 
 ## Installation
 Matilda can be obtained by simply clonning the github repository:
@@ -13,21 +14,21 @@ git clone https://github.com/liuchunlei0430/Matilda.git
 The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum.
 
 ## Preparing intput for Matilda
-### Dataset
-The processed data from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
+### Example dataset (Stephenson et al.)
+As an example, the processed CITE-seq dataset by Stephenson et al. from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
 
 ```
 https://drive.google.com/drive/folders/1uuSIiURzAUtu7r9V2wHwXbs7S_1srGg9?usp=sharing
 ```
 
-Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the input for Matilda: 1) download the datasets 2) modifying dataset paths in data_processing_code/data_processing.Rmd.
+Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the example dataset as input for Matilda: 1) download the dataset from the above link and 2) modify dataset paths in data_processing_code/data_processing.Rmd.
 
 ## Running Matilda
 In terminal, run
 
 ```
 cd main
-python main_citeseq.py
+python main_matilda.py
 ```
 
 The output will be saved in ./output folder.
@@ -36,14 +37,13 @@ The output will be saved in ./output folder.
 
 ### Dataset information
 
-`feature_num`: Number of total features in both training and test data for multi-omic data.
+`nfeatures_rna`: Number of RNAs in the dataset.
 
-`nfeatures_rna`: Number of RNA expressions in both training and test data for multi-omic data.
+`nfeatures_adt`: Number of ADTs in the dataset (can be null if atac is provided).
 
-`nfeatures_pro`: Number of ADT expressions in both training and test data for multi-omic data. Note in 2-modality data, it may 
-represents the number of ATAC expressions.
+`nfeatures_atac`: Number of ATAC in the dataset (can be null if adt is provided). Note ATAC data should be summarised to the gene level as "gene activity score".
 
-`classify_dim`: Number of cell type.
+`classify_dim`: Number of cell types.
 
 ### Training and model config
 
@@ -57,25 +57,31 @@ represents the number of ATAC expressions.
 
 `hidden_rna`: Dimension of RNA branch.
 
-`hidden_pro`: Dimension of ADT branch.
+`hidden_adt`: Dimension of ADT branch.
 
 `hidden_atac`: Dimension of ATAC branch.
 
 ### Other config
 
-`seed`: The random seed set in training.
+`seed`: The random seed for training.
 
-`augmentation`: Whether do augmentation or not.
+`augmentation`: Whether to augment simulated data.
 
-`fs`: Whether do feature selection or not.
+`fs`: Whether to perform feature selection.
 
-`save_latent_space`: Whether save the dimension reduction result or not.
+`save_latent_space`: Whether to save the dimension reduction result.
 
-`save_simulated_result`: Whether save the simulation result or not.
+`save_simulated_result`: Whether to save the simulation result.
 
-`dataset`: Name of the dataset.
+`dataset`: Name of the input dataset.
+
+### Example run
+
 
 
 ## Output
 
 After training, Matilda will output the average accuracy before augmentation and after augmentation.
+
+## Reference
+Stephenson, E. et al. Single-cell multi-omics analysis of the immune response in COVID-19. Nat. Med. 27, 904–916 (2021).
