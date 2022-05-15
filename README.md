@@ -76,7 +76,9 @@ The output will be saved in ./output folder.
 `dataset`: Name of the input dataset.
 
 ### Example run
-
+python main.py --nfeatures_rna 11062 --nfeatures_adt 189 --classify_dim 26
+python main.py --nfeatures_rna 8926 --nfeatures_atac 14034 --classify_dim 22
+python main.py --nfeatures_rna 9855 --nfeatures_adt 46 --features_atac 14732 --classify_dim 11
 
 
 ## Output
