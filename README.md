@@ -9,20 +9,33 @@ Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run.
 ## Installation
 Matilda can be obtained by simply clonning the github repository:
 
+Step 1:
 ```
 git clone https://github.com/liuchunlei0430/Matilda.git
 ```
-
-The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum.
-
 Note: We recommend to use conda enviroment to install the GPU environment:
 
+Step 2:
+Check the environment including GPU settings and the highest CUDA version allowed by the GPU.
 ```
-# CUDA 10.2
+nvidia-smi
+```
+
+Step 3:
+Install pytorch and cuda version based on your GPU settings.
+```
+# Example code for installing CUDA 10.2
 conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=10.2 -c pytorch
 
-# CUDA 11.3
+# Example code for installing CUDA 11.3
 conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+```
+
+Step 4:
+The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum. We will install these packages in the conda environment as the following:
+```
+conda activate [environment_name]
+pip install h5py; numpy; os; random; pandas; captum
 ```
 
 ## Preparing intput for Matilda
