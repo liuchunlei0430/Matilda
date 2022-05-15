@@ -51,38 +51,23 @@ The output will be saved in ./output folder.
 ## Argument
 
 ### Dataset information
-
 + `nfeatures_rna`: Number of RNAs in the dataset.
 + `nfeatures_adt`: Number of ADTs in the dataset (can be null if atac is provided).
 + `nfeatures_atac`: Number of ATAC in the dataset (can be null if adt is provided). Note ATAC data should be summarised to the gene level as "gene activity score".
 + `classify_dim`: Number of cell types.
-
 ### Training and model config
-
 + `batch_size`: Batch size (set as 64 by default)
-
 + `epochs`: Number of epochs.
-
 + `lr`: Learning rate.
-
 + `z_dim`: Dimension of latent space.
-
 + `hidden_rna`: Dimension of RNA branch.
-
 + `hidden_adt`: Dimension of ADT branch.
-
 + `hidden_atac`: Dimension of ATAC branch.
-
 ### Other config
-
 + `seed`: The random seed for training.
-
 + `augmentation`: Whether to augment simulated data.
-
 + `fs`: Whether to perform feature selection.
-
 + `save_latent_space`: Whether to save the dimension reduction result.
-
 + `save_simulated_result`: Whether to save the simulation result.
 
 ### Example run
@@ -91,13 +76,9 @@ python main_matilda.py --nfeatures_rna 11062 --nfeatures_adt 189 --classify_dim 
 ## Output
 
 After training, Matilda has 4 types of outputs:
-
 1) the average accuracy before augmentation and after augmentation saved in `./output/classification/`; 
-
 2) the simulated data saved in `./output/simulation_result/`; 
-
 3) the latent space for dimension reduction saved in `./output/dimension_reduction/`; 
- 
 4) the joint markers saved in `./output/marker/`.
 
 ## Visualisation
@@ -105,7 +86,6 @@ To generate UMAP plots for the simulated data using R, modify dataset paths in '
 
 ```
 cd qc
-
 Rscript visualize_simulated_data.Rmd
 ```
 
@@ -113,7 +93,6 @@ To generate UMAP plots and ARI, NMI, FM, Jaccard for the latent space using R, m
 
 ```
 cd qc
-
 Rscript visualize_latent_space.Rmd
 ```
 
@@ -121,9 +100,7 @@ Rscript visualize_latent_space.Rmd
 [1] Ramaswamy, A. et al. Immune dysregulation and autoreactivity correlate with disease severity in
 SARS-CoV-2-associated multisystem inflammatory syndrome in children. Immunity 54, 1083–
 1095.e7 (2021).
-
 [2] Ma, A., McDermaid, A., Xu, J., Chang, Y. & Ma, Q. Integrative Methods and Practical Challenges
 for Single-Cell Multi-omics. Trends Biotechnol. 38, 1007–1022 (2020).
-
 [3] Swanson, E. et al. Simultaneous trimodal single-cell measurement of transcripts, epitopes, and
 chromatin accessibility using TEA-seq. Elife 10, (2021).
