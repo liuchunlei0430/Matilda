@@ -100,7 +100,9 @@ Rscript visualize_latent_space.Rmd
 [1] Ramaswamy, A. et al. Immune dysregulation and autoreactivity correlate with disease severity in
 SARS-CoV-2-associated multisystem inflammatory syndrome in children. Immunity 54, 1083–
 1095.e7 (2021).
+
 [2] Ma, A., McDermaid, A., Xu, J., Chang, Y. & Ma, Q. Integrative Methods and Practical Challenges
 for Single-Cell Multi-omics. Trends Biotechnol. 38, 1007–1022 (2020).
+
 [3] Swanson, E. et al. Simultaneous trimodal single-cell measurement of transcripts, epitopes, and
 chromatin accessibility using TEA-seq. Elife 10, (2021).
