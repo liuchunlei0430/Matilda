@@ -24,7 +24,8 @@ https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sha
 Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the example dataset as input for Matilda: 1) download the dataset from the above link and 2) modify dataset paths in data_processing_code/data_processing.Rmd.
 
 ## Running Matilda
-In terminal, run
+
+In terminal, setting arguments according to the data input (See Arguments section for more details).
 
 ```
 cd main
