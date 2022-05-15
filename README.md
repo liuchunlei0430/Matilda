@@ -15,10 +15,10 @@ The following python packages are required to be installed before running Matild
 
 ## Preparing intput for Matilda
 ### Example dataset (Stephenson et al.)
-As an example, the processed CITE-seq dataset by Stephenson et al. from 10x Genomics and EMBL-EBI ArrayExpress database can be downloaded from:
+As an example, the processed CITE-seq dataset by Ramaswamy et al. (GSE166489), SHARE-seq dataset by Ma et al. (GSE140203), TEA-seq dataset by Swanson et al. (GSE158013) from 10x Genomics can be downloaded from:
 
 ```
-https://drive.google.com/drive/folders/1uuSIiURzAUtu7r9V2wHwXbs7S_1srGg9?usp=sharing
+https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sharing
 ```
 
 Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the example dataset as input for Matilda: 1) download the dataset from the above link and 2) modify dataset paths in data_processing_code/data_processing.Rmd.
