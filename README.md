@@ -318,7 +318,7 @@ The average accuracy before/after augmentation are: [[63.834983825683594, 77.766
 
 ## Output
 
-After training, Matilda will output the average accuracy before augmentation and after augmentation.
+After training, Matilda will output 1) the average accuracy before augmentation and after augmentation; 2) the simulated data; 3) the latent space for dimension reduction; 4) the joint markers.
 
 ## Reference
 Stephenson, E. et al. Single-cell multi-omics analysis of the immune response in COVID-19. Nat. Med. 27, 904–916 (2021).
