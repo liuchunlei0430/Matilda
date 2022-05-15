@@ -1,0 +1,102 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+This tutorial take CITE-seq for example. We load the simulation results saved in "../output/simulation_result/" folder as input. The output is the umap of real data, umap of simulated data, and umap of  
+
+load package
+```{r}
+library(SingleCellExperiment)
+library(data.table)
+library(scater)
+library(glue)
+library(scran)
+library(ggplot2)
+library(ggpubr)
+library(umap)
+make_sce <- function(expr, label){
+  sce <- SingleCellExperiment(list(logcounts=expr))
+  sce$celltype <- as.factor(label)
+  return(sce)
+}
+```
+
+```{r}
+dataset_name = "CITEseq"
+```
+
+load real and simulated data
+```{r}
+nfeatures_rna = 10249
+nfeatures_adt = 189
+feature_num = nfeatures_rna + nfeatures_adt
+      
+train.sim <- t(fread(glue("../output/simulation_result/CITEseq/sim.csv")))
+train.sim <- train.sim[2:dim(train.sim)[1],]
+train.rna.sim <- train.sim[1:nfeatures_rna,]
+train.adt.sim <- train.sim[(nfeatures_rna+1): feature_num,]
+colnames(train.rna.sim)<-glue("sim_{c(1:dim(train.rna.sim)[2])}")
+colnames(train.adt.sim)<-glue("sim_{c(1:dim(train.adt.sim)[2])}")
+
+train.real <- t(fread(glue("../output/simulation_result/CITEseq/real.csv")))
+train.real <- train.real[2:dim(train.real)[1],]
+train.rna.real <- train.real[1:nfeatures_rna,]
+train.adt.real <- train.real[(nfeatures_rna+1): feature_num,]
+colnames(train.rna.real)<-glue("sim_{c(1:dim(train.rna.real)[2])}")
+colnames(train.adt.real)<-glue("sim_{c(1:dim(train.adt.real)[2])}")
+    
+#train.cty.sim <-  t(fread(glue("../output/simulation_result/CITEseq/label.csv")))[2,]  #label information
+```
+
+Then, do umap for real and simulated RNA data
+```{r}
+rna.combined <- cbind(train.rna.real, train.rna.sim)
+sce.rna.combined <- make_sce(rna.combined, c(rep("original",dim(train.rna.real)[2]),rep("augment",dim(train.rna.sim)[2])))
+sce.rna.combined <- runUMAP(sce.rna.combined, n_threads=10)
+umap_both_rna_layout <- sce.rna.combined@int_colData$reducedDims$UMAP
+umap_both_rna_layout <- as.data.frame(umap_both_rna_layout)
+data <- c(rep("2",dim(train.rna.real)[2]),rep("4",dim(train.rna.sim)[2]))
+umap_both_rna_layout1 <- umap_both_rna_layout[1:dim(train.rna.real)[2],]
+umap_both_rna_layout2 <- umap_both_rna_layout[(dim(train.rna.real)[2]+1):(2*dim(train.rna.real)[2]),]
+```
+
+Next, show 1) umap of overlap real and simulated RNA data; 2) umap for real RNA data; 3) umap of simulated RNA data
+```{r}
+plot0<-ggplot(umap_both_rna_layout,aes(V1,V2,color=data)) +
+  geom_point(size = 0.8,alpha=0.05,show.legend = FALSE)+ labs(x = "", y = "", title = "") + theme_classic()  + 
+  theme(aspect.ratio = 1)+ theme(panel.grid =element_blank()) +theme(axis.text = element_blank()) +  theme(axis.ticks = element_blank()) +  theme(plot.title = element_text(hjust = 0.5,size=8),panel.spacing = unit(0, "lines")) + ggtitle("Real+simulate")
+plot1 <- ggplot(umap_both_rna_layout1,aes(V1,V2)) +
+  geom_point(size = 0.8,colour=2)+ labs(x = "", y = "", title = "") + theme_classic()  + 
+  theme(aspect.ratio = 1)+ theme(panel.grid =element_blank()) +theme(axis.text = element_blank()) +  theme(axis.ticks = element_blank()) +  theme(plot.title = element_text(hjust = 0.5,size=8),panel.spacing = unit(0, "lines")) + ggtitle("Real RNA")
+plot2 <- ggplot(umap_both_rna_layout2,aes(V1,V2)) +
+  geom_point(size = 0.8,colour=4)+ labs(x = "", y = "", title = "") + theme_classic()  + 
+  theme(aspect.ratio = 1)+ theme(panel.grid =element_blank()) +theme(axis.text = element_blank()) +  theme(axis.ticks = element_blank()) +  theme(plot.title = element_text(hjust = 0.5,size=8),panel.spacing = unit(0, "lines")) + ggtitle("simulate RNA")
+top1<-ggarrange(plot0,plot1,plot2,ncol=3,nrow=1)
+top1
+```
+
+Next, show 1) umap of overlap real and simulated ADT data; 2) umap for real ADT data; 3) umap of simulated ADT data
+```{r}
+adt.combined <- cbind(train.adt.real, train.adt.sim)
+sce.adt.combined <- make_sce(adt.combined, c(rep("original",dim(train.adt.real)[2]),rep("augment",dim(train.adt.sim)[2])))
+sce.adt.combined <- runUMAP(sce.adt.combined, n_threads=10)
+umap_both_adt_layout <- sce.adt.combined@int_colData$reducedDims$UMAP
+umap_both_adt_layout <- as.data.frame(umap_both_adt_layout)
+data <- c(rep("2",dim(train.adt.real)[2]),rep("4",dim(train.adt.sim)[2]))
+umap_both_adt_layout1 <- umap_both_adt_layout[1:dim(train.adt.real)[2],]
+umap_both_adt_layout2 <- umap_both_adt_layout[(dim(train.adt.real)[2]+1):(2*dim(train.adt.real)[2]),]
+
+plot4<-ggplot(umap_both_adt_layout,aes(V1,V2,color=data)) +
+  geom_point(size = 0.8,alpha=0.05,show.legend = FALSE)+ labs(x = "", y = "", title = "") + theme_classic()  + 
+  theme(aspect.ratio = 1)+ theme(panel.grid =element_blank()) +theme(axis.text = element_blank()) +  theme(axis.ticks = element_blank()) +  theme(plot.title = element_text(hjust = 0.5,size=8),panel.spacing = unit(0, "lines")) + ggtitle("Real+simulate")
+plot5 <- ggplot(umap_both_adt_layout1,aes(V1,V2)) +
+  geom_point(size = 0.8,colour=2)+ labs(x = "", y = "", title = "") + theme_classic()  + 
+  theme(aspect.ratio = 1)+ theme(panel.grid =element_blank()) +theme(axis.text = element_blank()) +  theme(axis.ticks = element_blank()) +  theme(plot.title = element_text(hjust = 0.5,size=8),panel.spacing = unit(0, "lines")) + ggtitle("Real adt")
+plot6 <- ggplot(umap_both_adt_layout2,aes(V1,V2)) +
+  geom_point(size = 0.8,colour=4)+ labs(x = "", y = "", title = "") + theme_classic()  + 
+  theme(aspect.ratio = 1)+ theme(panel.grid =element_blank()) +theme(axis.text = element_blank()) +  theme(axis.ticks = element_blank()) +  theme(plot.title = element_text(hjust = 0.5,size=8),panel.spacing = unit(0, "lines")) + ggtitle("simulate adt")
+top2<-ggarrange(plot4,plot5,plot6,ncol=3,nrow=1)
+top2  
+```
+
