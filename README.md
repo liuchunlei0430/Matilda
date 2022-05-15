@@ -94,6 +94,23 @@ After training, Matilda has 4 types of outputs:
  
 4) the joint markers saved in `./output/marker/`.
 
+## Visualisation
+To generate UMAP plots for the simulated data using R, modify dataset paths in './qc/visualize_simulated_data.Rmd' and run the following codes in terminal:
+
+```
+cd qc
+
+Rscript visualize_simulated_data.Rmd
+```
+
+To generate UMAP plots and ARI, NMI, FM, Jaccard for the latent space using R, modify dataset paths in './qc/visualize_latent_space.Rmd' and run the following codes in terminal:
+
+```
+cd qc
+
+Rscript visualize_latent_space.Rmd
+```
+
 ## Reference
 [1] Ramaswamy, A. et al. Immune dysregulation and autoreactivity correlate with disease severity in
 SARS-CoV-2-associated multisystem inflammatory syndrome in children. Immunity 54, 1083–
