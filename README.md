@@ -27,13 +27,9 @@ conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=1
 
 ## Preparing intput for Matilda
 ### Example dataset 
-As an example, the processed CITE-seq dataset by Ramaswamy et al. (GSE166489), SHARE-seq dataset by Ma et al. (GSE140203), TEA-seq dataset by Swanson et al. (GSE158013) from 10x Genomics can be downloaded from [link](https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sharing):
+As an example, the processed CITE-seq dataset by Ramaswamy et al. (GSE166489), SHARE-seq dataset by Ma et al. (GSE140203), TEA-seq dataset by Swanson et al. (GSE158013) from 10x Genomics can be downloaded from [link](https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sharing).
 
-```
-https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sharing
-```
-
-Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. To prepare the example dataset as input for Matilda: 1) download the dataset from the above link and 2) modify dataset paths in data_processing_code/data_processing.Rmd.
+Note: Matilda’s main function takes expression data in .h5 format and cell type labels in .csv format. Users can prepare the example dataset as input for Matilda by downloading the dataset from the above link or use their own datasets by modifying dataset paths in data_processing_code/data_processing.Rmd.
 
 ## Running Matilda
 
