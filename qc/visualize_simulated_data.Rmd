@@ -1,9 +1,5 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-This tutorial take CITE-seq for example. We load the simulation results saved in "../output/simulation_result/" folder as input. The output is the umap of real data, umap of simulated data, and umap of  
+
+This tutorial take CITE-seq for example. We load the simulation results saved in "../output/simulation_result/" folder as input. The output is the umap overlapped data, the umap of real data, and the umap of simulated data for both RNA and ADT. 
 
 load package
 ```{r}
