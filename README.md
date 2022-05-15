@@ -15,6 +15,16 @@ git clone https://github.com/liuchunlei0430/Matilda.git
 
 The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum.
 
+Note: We recommend to use conda enviroment to install the GPU environment:
+
+```
+# CUDA 10.2
+conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=10.2 -c pytorch
+
+# CUDA 11.3
+conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+```
+
 ## Preparing intput for Matilda
 ### Example dataset 
 As an example, the processed CITE-seq dataset by Ramaswamy et al. (GSE166489), SHARE-seq dataset by Ma et al. (GSE140203), TEA-seq dataset by Swanson et al. (GSE158013) from 10x Genomics can be downloaded from [link](https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sharing):
