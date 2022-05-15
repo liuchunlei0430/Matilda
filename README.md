@@ -78,8 +78,6 @@ The output will be saved in ./output folder.
 
 `save_simulated_result`: Whether to save the simulation result.
 
-`dataset`: Name of the input dataset.
-
 ### Example run
 python main.py --nfeatures_rna 11062 --nfeatures_adt 189 --classify_dim 26
 
