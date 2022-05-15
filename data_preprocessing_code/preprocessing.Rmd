@@ -47,9 +47,9 @@ adt.filt <- (adt.filt - mean_adt)/sd_adt
 ##Saving data as h5 files
 ```{r}
 write_h5_scJoint(exprs_list = list(rna = rbind(rna.filt,adt.filt)), 
-           h5file_list = c(glue("./../processed_data/{dataset_name}/data.h5"))) #modify your path here
+           h5file_list = c(glue("./../processed_data/data.h5"))) #modify your path here
 write_csv_scJoint(cellType_list =  list(rna = cty),
-          csv_list = c(glue("./../processed_data/{dataset_name}/cty.csv"))) #modify your path here
+          csv_list = c(glue("./../processed_data/cty.csv"))) #modify your path here
 ```
 
 ```{r}
