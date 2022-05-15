@@ -78,9 +78,9 @@ After training, Matilda has 4 types of outputs:
 4) the joint markers saved in `./output/marker/`.
 
 ## Visualisation
-To generate UMAP plots for the simulated data using R, modify dataset paths in './qc/visualize_simulated_data.Rmd' and run this file.
+To generate UMAP plots for the simulated data using R, modify dataset paths in `./qc/visualize_simulated_data.Rmd` and run this file.
 
-To generate UMAP plots and ARI, NMI, FM, Jaccard for the latent space using R, modify dataset paths in './qc/visualize_latent_space.Rmd' and run this file.
+To generate UMAP plots and ARI, NMI, FM, Jaccard for the latent space using R, modify dataset paths in `./qc/visualize_latent_space.Rmd` and run this file.
 
 ## Reference
 [1] Ramaswamy, A. et al. Immune dysregulation and autoreactivity correlate with disease severity in
