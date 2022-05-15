@@ -41,11 +41,8 @@ In terminal, setting arguments according to the data input (See Arguments sectio
 
 ```
 cd main
-
 python main_matilda.py --nfeatures_rna 11062 --nfeatures_adt 189 --classify_dim 26 ###for CITE-seq
-
 python main_matilda.py --nfeatures_rna 8926 --nfeatures_atac 14034 --classify_dim 22  ###for SHARE-seq
-
 python main_matilda.py --nfeatures_rna 9855 --nfeatures_adt 46 --features_atac 14732 --classify_dim 11 ###for TEA-seq 
 ```
 
@@ -56,11 +53,8 @@ The output will be saved in ./output folder.
 ### Dataset information
 
 + `nfeatures_rna`: Number of RNAs in the dataset.
-
 + `nfeatures_adt`: Number of ADTs in the dataset (can be null if atac is provided).
-
 + `nfeatures_atac`: Number of ATAC in the dataset (can be null if adt is provided). Note ATAC data should be summarised to the gene level as "gene activity score".
-
 + `classify_dim`: Number of cell types.
 
 ### Training and model config
