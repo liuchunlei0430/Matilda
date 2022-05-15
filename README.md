@@ -43,41 +43,41 @@ The output will be saved in ./output folder.
 
 ### Dataset information
 
-`nfeatures_rna`: Number of RNAs in the dataset.
++ `nfeatures_rna`: Number of RNAs in the dataset.
 
-`nfeatures_adt`: Number of ADTs in the dataset (can be null if atac is provided).
++ `nfeatures_adt`: Number of ADTs in the dataset (can be null if atac is provided).
 
-`nfeatures_atac`: Number of ATAC in the dataset (can be null if adt is provided). Note ATAC data should be summarised to the gene level as "gene activity score".
++ `nfeatures_atac`: Number of ATAC in the dataset (can be null if adt is provided). Note ATAC data should be summarised to the gene level as "gene activity score".
 
-`classify_dim`: Number of cell types.
++ `classify_dim`: Number of cell types.
 
 ### Training and model config
 
-`batch_size`: Batch size (set as 64 by default)
++ `batch_size`: Batch size (set as 64 by default)
 
-`epochs`: Number of epochs.
++ `epochs`: Number of epochs.
 
-`lr`: Learning rate.
++ `lr`: Learning rate.
 
-`z_dim`: Dimension of latent space.
++ `z_dim`: Dimension of latent space.
 
-`hidden_rna`: Dimension of RNA branch.
++ `hidden_rna`: Dimension of RNA branch.
 
-`hidden_adt`: Dimension of ADT branch.
++ `hidden_adt`: Dimension of ADT branch.
 
-`hidden_atac`: Dimension of ATAC branch.
++ `hidden_atac`: Dimension of ATAC branch.
 
 ### Other config
 
-`seed`: The random seed for training.
++ `seed`: The random seed for training.
 
-`augmentation`: Whether to augment simulated data.
++ `augmentation`: Whether to augment simulated data.
 
-`fs`: Whether to perform feature selection.
++ `fs`: Whether to perform feature selection.
 
-`save_latent_space`: Whether to save the dimension reduction result.
++ `save_latent_space`: Whether to save the dimension reduction result.
 
-`save_simulated_result`: Whether to save the simulation result.
++ `save_simulated_result`: Whether to save the simulation result.
 
 ### Example run
 python main_matilda.py --nfeatures_rna 11062 --nfeatures_adt 189 --classify_dim 26
