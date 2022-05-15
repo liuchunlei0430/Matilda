@@ -14,7 +14,7 @@ git clone https://github.com/liuchunlei0430/Matilda.git
 The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum.
 
 ## Preparing intput for Matilda
-### Example dataset (Stephenson et al.)
+### Example dataset 
 As an example, the processed CITE-seq dataset by Ramaswamy et al. (GSE166489), SHARE-seq dataset by Ma et al. (GSE140203), TEA-seq dataset by Swanson et al. (GSE158013) from 10x Genomics can be downloaded from:
 
 ```
