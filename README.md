@@ -37,7 +37,6 @@ pip install numpy
 pip install pandas
 pip install captum
 ```
-where `[environment_name]` will 
 
 Step 5:
 Otain Matilda by clonning the github repository:
