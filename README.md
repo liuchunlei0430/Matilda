@@ -10,8 +10,8 @@ Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run.
 We recommend to use conda enviroment to install and run Matilda. We assume conda is installed.
 
 Step 1:
+Create and activate the conda environment for matilda
 ```
-# Create and activate the conda environment for matilda
 conda create -n environment_matilda python=3.8
 conda activate environment_matilda
 ```
