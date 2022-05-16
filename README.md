@@ -56,7 +56,7 @@ gene.activities <- CreateGeneActivityMatrix2(peak.matrix=teaseq.peak,
 ```
 
 ### Example dataset
-First,  we create the `./data` folder under Matilda and unzip the files under `./data`.
+First,  we create the `./data` folder under `Matilda`:
 ```
 cd Matilda
 mkdir data
