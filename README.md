@@ -30,7 +30,7 @@ conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 cudatoolkit=1
 ```
 
 Step 4:
-The following python packages are required to be installed before running Matilda: h5py, torch, numpy, os, random, pandas, captum. We will install these packages in the conda environment as the following:
+The following python packages are required for running Matilda: h5py, torch, numpy, os, random, pandas, captum. They can be installed in the conda environment as below:
 ```
 pip install h5py
 pip install numpy
