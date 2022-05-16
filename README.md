@@ -58,6 +58,12 @@ gene.activities <- CreateGeneActivityMatrix2(peak.matrix=teaseq.peak,
 ### Example dataset
 As an example, the processed TEA-seq dataset by Swanson et al. (GSE158013) is provided for the example run can be downloaded from [link](https://drive.google.com/drive/folders/1xdWzY0XLZkWYVD9XYTp_UALBhOKSmHAW?usp=sharing).
 
+```
+cd Matilda
+mkdir data
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ojilvNBB95GbgtF9a0IHl3yWQwl6gDl8' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ojilvNBB95GbgtF9a0IHl3yWQwl6gDl8" -O TEAseq.zip && rm -rf /tmp/cookies.txt
+```
+
 Users can prepare the example dataset as input for Matilda by downloading the dataset from the above link or use their own datasets.
 
 ## Running Matilda with the example dataset
