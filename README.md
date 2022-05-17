@@ -166,6 +166,8 @@ The average classification accuracy is: tensor(76.6730)
 ```
 # using the trained model for data simulation
 python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --simulation True --simulation_ct 1 --simulation_num 200
+# Example run
+python main_matilda_task.py  --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAseq/test_adt.h5 --atac ../data/TEAseq/test_atac.h5 --cty ../data/TEAseq/test_cty.csv --simulation True --simulation_ct 1 --simulation_num 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. 
 
@@ -173,6 +175,8 @@ Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`
 ```
 # using the trained model for visualising query data
 python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --visualisation True
+# Example run
+python main_matilda_task.py  --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAseq/test_adt.h5 --atac ../data/TEAseq/test_atac.h5 --cty ../data/TEAseq/test_cty.csv --visualisation True
 ```
 
 Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`.  
@@ -180,6 +184,8 @@ Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To
 ```
 # using the trained model for feature selection
 python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --fs True
+# Example run
+python main_matilda_task.py  --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAseq/test_adt.h5 --atac ../data/TEAseq/test_atac.h5 --cty ../data/TEAseq/test_cty.csv  --fs True
 ```
 
 Output: The output, i.e. feature importance scores, will be saved in `./Matilda/output/markers/TEAseq/`. 
