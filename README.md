@@ -5,7 +5,7 @@ Matilda is a multi-task framework for learning from single-cell multimodal omics
 <img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/main.jpg"/>
 
 ## Installation
-Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run. You can use use the provided environment or install the environment by yourself accoring to your hardware settings. 
+Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run. You can use the provided environment or install the environment by yourself accoring to your hardware settings. 
 
 ### Installation using provided environment
 ```
