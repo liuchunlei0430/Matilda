@@ -4,10 +4,17 @@ Matilda is a multi-task framework for learning from single-cell multimodal omics
 
 <img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/main.jpg"/>
 
-Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run.
-
 ## Installation
-We recommend using conda enviroment to install and run Matilda. We assume conda is installed. The following installation code snippets were tested on a Ubuntu system.
+Matilda is developed using PyTorch 1.9.1 and requires >=1 GPU to run. You can use use the provided environment or install the environment by yourself accoring to your hardware settings. 
+
+### Installation using provided environment
+```
+cd Matilda
+conda env create -f environment_matilda.yaml
+```
+
+### Installation by youself
+We recommend using conda enviroment to install and run Matilda. We assume conda is installed. The following installation code snippets were tested on a Ubuntu system with NVIDIA GeForce 3090 GPU.
 
 Step 1:
 Create and activate the conda environment for matilda
