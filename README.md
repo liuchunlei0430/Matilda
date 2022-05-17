@@ -75,15 +75,15 @@ Users can prepare the example dataset as input for Matilda by downloading the da
 ```
 cd main
 # training the matilda model
-python main_matilda_train.py --rna [trainRNA] --adt [trainADT] --atac [trainATAC] #[training dataset]
+python main_matilda_train.py --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] #[training dataset]
 ```
 
 ### Argument
-
 Training dataset information
 + `--rna`: path to training data RNA modality.
 + `--adt`: path to training data ADT modality (can be null if ATAC is provided).
 + `--atac`: path to training data ATAC modality (can be null if ADT is provided). Note ATAC data should be summarised to the gene level as "gene activity score".
++ `--cty`: path to the labels of training data.
 
 Training and model config
 + `batch_size`: Batch size (set as 64 by default)
@@ -98,9 +98,25 @@ Other config
 + `seed`: The random seed for training.
 + `augmentation`: Whether to augment simulated data.
 
-
 ### Perform multiple tasks using trained Matilda model.
+After training the model, we can use main_matilda_task.py to do multiple tasks with different augments.
+
+### Argument for performing tasks
++ `--classification`: whether to do cell type classification.
++ `--fs`: whether to do cell type feature selection.
++ `--dimension reduction`: whether to do dimension reduction.
++ `--simulation_all`: whether to simulate data with the same number of real data. 
++ `--simulation_ct`: whether to do cell type classification. Only be activated when `simulation_all = False`.
++ `--simulation_num`: whether to do cell type classification. Only be activated when `simulation_all = False`.
+
+
 Multi-task on the training data
+```
+# using the trained model for data simulation 
+python main_matilda_task.py --simution_all
+```
+
+
 ```
 # using the trained model for data simulation
 python main_matilda_task.py --simulate [cellType] -n 200
