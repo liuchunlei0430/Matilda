@@ -134,7 +134,7 @@ python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC
 # Example run
 python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --fs True
 ```
-Output: The output will be saved in `./Matilda/output/fs/TEAseq/`. 
+Output: The output, i.e. feature importance scores, will be saved in `./Matilda/output/marker/TEAseq/`. 
 
 
 **2) Multi-task on the query data**
@@ -180,7 +180,7 @@ Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To
 python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --fs True
 ```
 
-Output: The output will be saved in `./Matilda/output/fs/TEAseq/`.
+Output: The output, i.e. feature importance scores, will be saved in `./Matilda/output/markers/TEAseq/`. 
 
 
 ## Reference
