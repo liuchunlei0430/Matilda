@@ -12,7 +12,7 @@ We recommend using conda enviroment to install and run Matilda. We assume conda 
 Step 1:
 Create and activate the conda environment for matilda
 ```
-conda create -n environment_matilda python=3.8
+conda create -n environment_matilda python=3.7
 conda activate environment_matilda
 ```
 
