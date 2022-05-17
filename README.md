@@ -110,7 +110,7 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 + `--simulation_num`: whether to do cell type classification. Only be activated when `simulation = True`.
 
 
-1) Multi-task on the training data
+**1) Multi-task on the training data**
 
 ```
 # using the trained model for data simulation
@@ -133,7 +133,7 @@ python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC
 Output: The output will be saved in `./Matilda/output/fs/TEAseq/`. 
 
 
-2) Multi-task on the query data
+**2) Multi-task on the query data**
 ```
 # using the trained model for classifying query data
 python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --classification True
