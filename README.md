@@ -142,6 +142,22 @@ python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC
 Output: The output will be saved in `./Matilda/output/classification/TEAseq/`.
 
 ```
+The dataset is TEAseq
+cell type :  0 	 	 prec : tensor(62.8241, device='cuda:0') number: 180
+cell type :  1 	 	 prec : tensor(99.2557, device='cuda:0') number: 802
+cell type :  2 	 	 prec : tensor(60., device='cuda:0') number: 11
+cell type :  3 	 	 prec : tensor(98.6889, device='cuda:0') number: 639
+cell type :  4 	 	 prec : tensor(70.6897, device='cuda:0') number: 37
+cell type :  5 	 	 prec : tensor(97.1820, device='cuda:0') number: 283
+cell type :  6 	 	 prec : tensor(45.4545, device='cuda:0') number: 12
+cell type :  7 	 	 prec : tensor(68.1717, device='cuda:0') number: 1189
+cell type :  8 	 	 prec : tensor(83.9875, device='cuda:0') number: 1020
+cell type :  9 	 	 prec : tensor(84.3146, device='cuda:0') number: 576
+cell type :  10 	 	 prec : tensor(83.3883, device='cuda:0') number: 299
+The average classification accuracy is: tensor(77.6324)
+```
+
+```
 # using the trained model for data simulation
 python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --simulation True --simulate_ct 1 -n 200
 ```
