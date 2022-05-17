@@ -185,7 +185,7 @@ python main_matilda_task.py  --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAs
 ```
 
 Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
-<img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation2.jpg"/>  
+<img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation2.png"/>  
 
 ```
 # using the trained model for feature selection
