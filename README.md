@@ -70,6 +70,8 @@ cd Matilda
 cd main
 # training the matilda model
 python main_matilda_train.py --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] #[training dataset]
+# Example run
+python main_matilda_train.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv
 ```
 
 ### Argument
@@ -91,6 +93,8 @@ Training and model config
 Other config
 + `--seed`: The random seed for training.
 + `--augmentation`: Whether to augment simulated data.
+
+Note: after training, the model will be saved in `./Matilda/trained_model/`.
 
 ### Perform multiple tasks using trained Matilda model.
 After training the model, we can use `main_matilda_task.py` to do multiple tasks with different augments.
