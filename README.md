@@ -136,28 +136,28 @@ Output: The output will be saved in `./Matilda/output/fs/TEAseq/`.
 2) Multi-task on the query data
 ```
 # using the trained model for classifying query data
-python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --classification True
+python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --classification True
 ```
 
 Output: The output will be saved in `./Matilda/output/classification/TEAseq/`.
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulate_ct 1 -n 200
+python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --simulation True --simulate_ct 1 -n 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. 
 
 
 ```
 # using the trained model for visualising query data
-python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --visualisation True
+python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --visualisation True
 ```
 
 Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`.  
 
 ```
 # using the trained model for feature selection
-python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --fs True
+python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --fs True
 ```
 
 Output: The output will be saved in `./Matilda/output/fs/TEAseq/`.
