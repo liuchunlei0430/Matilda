@@ -44,6 +44,7 @@ pip install pandas
 pip install captum
 pip install tqdm
 pip install scipy
+pip install scanpy
 ```
 
 Step 5:
