@@ -36,6 +36,7 @@ pip install h5py
 pip install numpy
 pip install pandas
 pip install captum
+pip install tqdm
 ```
 
 Step 5:
