@@ -113,6 +113,8 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 ```
 # using the trained model for data simulation
 python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulate_ct 1 -n 200
+# Example run
+python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --simulation True --simulate_ct 1 -n 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_anchor.jpg"/> 
@@ -120,13 +122,17 @@ Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`
 ```
 # using the trained model for data visualisation
 python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --visualisation True
+# Example run
+python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --visualisation True
 ```
 Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation.jpg"/> 
 
 ```
 # using the trained model for feature selection
-python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --fs
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --fs True
+# Example run
+python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --fs True
 ```
 Output: The output will be saved in `./Matilda/output/fs/TEAseq/`. 
 
