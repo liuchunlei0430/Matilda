@@ -87,7 +87,6 @@ python main_matilda_train.py --rna [trainRNA] --adt [trainADT] --atac [trainATAC
 # Example run
 python main_matilda_train.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv
 ```
-
 ### Argument
 Training dataset information
 + `--rna`: path to training data RNA modality.
