@@ -99,6 +99,9 @@ if args.classification == True:
         model.load_state_dict(checkpoint['state_dict'], strict=True)
     model, acc1, num1 = test_model(model, dl, classify_dim = classify_dim)
     average1 = torch.mean(torch.Tensor(acc1))
+    if not os.path.exists('../output/classification/{}'.format(mode)):
+        os.makedirs('../output/classification/{}'.format(mode))
+    pd.DataFrame(acc1).to_csv( '../output/classification/{}/accuracy_each_ct.csv'.format(mode))
     print("The average classification accuracy is:", average1)
 
 if args.simulation == True:
