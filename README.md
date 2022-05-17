@@ -99,7 +99,7 @@ Other config
 + `--augmentation`: Whether to augment simulated data.
 
 ### Perform multiple tasks using trained Matilda model.
-After training the model, we can use main_matilda_task.py to do multiple tasks with different augments.
+After training the model, we can use `main_matilda_task.py` to do multiple tasks with different augments.
 
 ### Argument for performing tasks
 + `--classification`: whether to do cell type classification.
@@ -110,11 +110,16 @@ After training the model, we can use main_matilda_task.py to do multiple tasks w
 + `--simulation_num`: whether to do cell type classification. Only be activated when `simulation_all = False`.
 
 
-Multi-task on the training data
+1) Multi-task on the training data
 ```
 # using the trained model for data simulation 
 python main_matilda_task.py --simution_all
 ```
+Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulate_rna.jpg"/>
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulate_adt.jpg"/>
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulate_atac.jpg"/>
+
 
 
 ```
@@ -139,7 +144,7 @@ python main_matilda_task.py --fs
 output
 
 
-Multi-task using query data
+2) Multi-task on the query data
 ```
 # using the trained model for classifying query data
 python main_matilda_task.py --classify --rna [queryRNA] --adt [queryADT] --atac [queryATAC]
