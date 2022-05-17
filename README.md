@@ -123,8 +123,15 @@ Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`
 # using the trained model for data visualisation
 python main_matilda_task.py --visualisation True
 ```
-Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
+Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation.jpg"/> 
+The clutering metrices are:
+```
+ARI: 0.6063286
+NMI: 0.7100391
+FM: 0.7100391
+Jaccard: 0.9105305
+```
 
 ```
 # using the trained model for feature selection
