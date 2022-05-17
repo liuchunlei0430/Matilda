@@ -56,24 +56,15 @@ gene.activities <- CreateGeneActivityMatrix2(peak.matrix=teaseq.peak,
 ```
 
 ### Example dataset
-First,  we create the `./data` folder under `./Matilda`:
-```
-cd Matilda
-mkdir data
-cd data
-```
 
-As an example, the processed TEA-seq dataset by Swanson et al. (GSE158013) is provided for the example run, which can be downloaded from [link](https://drive.google.com/file/d/1ojilvNBB95GbgtF9a0IHl3yWQwl6gDl8/view?usp=sharing) or the below command:
-```
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ojilvNBB95GbgtF9a0IHl3yWQwl6gDl8' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ojilvNBB95GbgtF9a0IHl3yWQwl6gDl8" -O TEAseq.zip && rm -rf /tmp/cookies.txt
-unzip TEAseq.zip
-```
 
-Users can prepare the example dataset as input for Matilda by downloading the dataset from the above link or use their own datasets.
+As an example, the processed TEA-seq dataset by Swanson et al. (GSE158013) is provided for the example run, which is saved in `./Matilda/data/TEAseq`.
+Users can prepare the example dataset as input for Matilda or use their own datasets.
 
 ## Running Matilda with the example dataset
 ### Training the Matilda model (see Arguments section for more details).
 ```
+cd Matilda
 cd main
 # training the matilda model
 python main_matilda_train.py --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] #[training dataset]
