@@ -111,21 +111,13 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 
 
 1) Multi-task on the training data
-```
-# using the trained model for data simulation 
-python main_matilda_task.py --simution_all
-```
-Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
-<img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_rna.jpg"/> <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_adt.jpg"/> <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_atac.jpg"/>
-
-
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py --simulate [cellType] -n 200
+python main_matilda_task.py --simulate_ct [cellType] -n 200
 ```
-
-output
+Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_anchor.jpg"/> 
 
 ```
 # using the trained model for data visualisation
