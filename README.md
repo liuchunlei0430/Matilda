@@ -112,7 +112,7 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulate_ct 1 -n 200
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulation_ct 1 -simulation_num 200
 # Example run
 python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --simulation True --simulate_ct 1 -n 200
 ```
