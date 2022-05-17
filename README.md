@@ -56,10 +56,11 @@ gene.activities <- CreateGeneActivityMatrix2(peak.matrix=teaseq.peak,
 ```
 
 ### Example dataset
-First,  we create the `./data` folder under `Matilda`:
+First,  we create the `./data` folder under `./Matilda`:
 ```
 cd Matilda
 mkdir data
+cd data
 ```
 
 As an example, the processed TEA-seq dataset by Swanson et al. (GSE158013) is provided for the example run, which can be downloaded from [link](https://drive.google.com/file/d/1ojilvNBB95GbgtF9a0IHl3yWQwl6gDl8/view?usp=sharing) or the below command:
