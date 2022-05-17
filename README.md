@@ -86,17 +86,17 @@ Training dataset information
 + `--cty`: path to the labels of training data.
 
 Training and model config
-+ `batch_size`: Batch size (set as 64 by default)
-+ `epochs`: Number of epochs.
-+ `lr`: Learning rate.
-+ `z_dim`: Dimension of latent space.
-+ `hidden_rna`: Dimension of RNA branch.
-+ `hidden_adt`: Dimension of ADT branch.
-+ `hidden_atac`: Dimension of ATAC branch.
++ `--batch_size`: Batch size (set as 64 by default)
++ `--epochs`: Number of epochs.
++ `--lr`: Learning rate.
++ `--z_dim`: Dimension of latent space.
++ `--hidden_rna`: Dimension of RNA branch.
++ `--hidden_adt`: Dimension of ADT branch.
++ `--hidden_atac`: Dimension of ATAC branch.
 
 Other config
-+ `seed`: The random seed for training.
-+ `augmentation`: Whether to augment simulated data.
++ `--seed`: The random seed for training.
++ `--augmentation`: Whether to augment simulated data.
 
 ### Perform multiple tasks using trained Matilda model.
 After training the model, we can use main_matilda_task.py to do multiple tasks with different augments.
