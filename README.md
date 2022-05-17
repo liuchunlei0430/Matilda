@@ -104,27 +104,27 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 ### Argument for performing tasks
 + `--classification`: whether to do cell type classification.
 + `--fs`: whether to do cell type feature selection.
-+ `--dimension reduction`: whether to do dimension reduction.
-+ `--simulation_all`: whether to simulate data with the same number of real data. 
-+ `--simulation_ct`: whether to do cell type classification. Only be activated when `simulation_all = False`.
-+ `--simulation_num`: whether to do cell type classification. Only be activated when `simulation_all = False`.
++ `--visualisation`: whether to do dimension reduction.
++ `--simulation`: whether to do simulation. 
++ `--simulation_ct`: whether to do cell type classification. Only be activated when `simulation = True`.
++ `--simulation_num`: whether to do cell type classification. Only be activated when `simulation = True`.
 
 
 1) Multi-task on the training data
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py --simulate_ct [cellType] -n 200
+python main_matilda_task.py --simulation True --simulate_ct 1 -n 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_anchor.jpg"/> 
 
 ```
 # using the trained model for data visualisation
-python main_matilda_task.py --visualisation
+python main_matilda_task.py --visualisation True
 ```
-
-output
+Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
+<img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation.jpg"/> 
 
 ```
 # using the trained model for feature selection
