@@ -114,70 +114,54 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py --simulation True --simulate_ct 1 -n 200
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulate_ct 1 -n 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_anchor.jpg"/> 
 
 ```
 # using the trained model for data visualisation
-python main_matilda_task.py --visualisation True
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --visualisation True
 ```
 Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation.jpg"/> 
-The clutering metrices are:
-```
-ARI: 0.6063286
-NMI: 0.7100391
-FM: 0.7100391
-Jaccard: 0.9105305
-```
 
 ```
 # using the trained model for feature selection
-python main_matilda_task.py --fs
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --fs
 ```
-
-output
+Output: The output will be saved in `./Matilda/output/fs/TEAseq/`. 
 
 
 2) Multi-task on the query data
 ```
 # using the trained model for classifying query data
-python main_matilda_task.py --classify --rna [queryRNA] --adt [queryADT] --atac [queryATAC]
+python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --classification True
 ```
 
-output
+Output: The output will be saved in `./Matilda/output/classification/TEAseq/`.
+
+```
+# using the trained model for data simulation
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulate_ct 1 -n 200
+```
+Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. 
+
 
 ```
 # using the trained model for visualising query data
-python main_matilda_task.py --visualisation --rna [queryRNA] --adt [queryADT] --atac [queryATAC]
+python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --visualisation True
 ```
 
-output
+Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`.  
 
 ```
 # using the trained model for feature selection
-python main_matilda_task.py --fs --rna [queryRNA] --adt [queryADT] --atac [queryATAC]
+python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --fs True
 ```
 
-output
+Output: The output will be saved in `./Matilda/output/fs/TEAseq/`.
 
-The output will be saved in ./output folder.
-
-
-## Output
-
-After training, Matilda has 4 types of outputs:
-1) Cell type classification: the average accuracy before augmentation and after augmentation saved in `./output/classification/`;
-2) Simulated data: simulated dataset saved in `./output/simulation_result/`; 
-3) the latent space for dimension reduction saved in `./output/dimension_reduction/`; 
-4) the joint markers saved in `./output/marker/`.
-
-## Visualisation
-To generate UMAP plots for the simulated data using R, modify dataset paths in `./qc/visualize_simulated_data.Rmd` and run this file.
-
-To generate UMAP plots and ARI, NMI, FM, Jaccard for the latent space using R, modify dataset paths in `./qc/visualize_latent_space.Rmd` and run this file.
 
 ## Reference
 [1] Ramaswamy, A. et al. Immune dysregulation and autoreactivity correlate with disease severity in
