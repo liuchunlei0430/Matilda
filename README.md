@@ -112,9 +112,9 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulation_ct 1 -simulation_num 200
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --simulation True --simulation_ct 1 --simulation_num 200
 # Example run
-python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --simulation True --simulation_ct 1 -simulation_num 200
+python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --simulation True --simulation_ct 1 --simulation_num 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_anchor.jpg"/> 
@@ -163,7 +163,7 @@ The average classification accuracy is: tensor(77.6324)
 
 ```
 # using the trained model for data simulation
-python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --simulation True --simulation_ct 1 -simulation_num 200
+python main_matilda_task.py  --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --simulation True --simulation_ct 1 --simulation_num 200
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. 
 
