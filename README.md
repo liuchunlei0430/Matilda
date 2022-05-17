@@ -116,9 +116,9 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 python main_matilda_task.py --simution_all
 ```
 Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`. To generate UMAP plots for the simulated data using R, run `./Matilda/qc/visualize_simulated_data.Rmd`. The UMAPs are:
-<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulate_rna.jpg"/>
-<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulate_adt.jpg"/>
-<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulate_atac.jpg"/>
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_rna.jpg"/>
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_adt.jpg"/>
+<img width=100% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_atac.jpg"/>
 
 
 
