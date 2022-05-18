@@ -171,6 +171,8 @@ if args.simulation == True:
     pd.DataFrame(sim_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/sim_label.csv'.format(mode))
     pd.DataFrame(real_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/real_label.csv'.format(mode))
     
+    print("finish simulation")
+    
 if args.visualisation == True:
     checkpoint_tar = os.path.join(model_save_path, 'model_best.pth.tar')
     if os.path.exists(checkpoint_tar):
