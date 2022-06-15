@@ -28,9 +28,10 @@ def setup_seed(seed):
 def real_label(label_path,classify_dim):
     output_v = []
     label = pd.read_csv(label_path,header=None,index_col=False)  #
-    label = label.iloc[1:(label.shape[0]),1]
+    label_real = label.iloc[1:(label.shape[0]),1]
+    label_num = read_fs_label(label_path)
     for i in range(classify_dim):    
-        temp = label[np.array(torch.where(label==i)[0][0].cpu()).astype('int32')+1]
+        temp = label_real[np.array(torch.where(label_num==i)[0][0].cpu()).astype('int32')+1]
         output_v.append(temp)
     return output_v
 
