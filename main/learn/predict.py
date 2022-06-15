@@ -47,7 +47,7 @@ def test_model(model, dl, real_label, classify_dim=17):
 
     for j in range(classify_dim):
         best_each_celltype_top1[j] = each_celltype_top1[j].avg
-        print('cell type ID: ',j, '\t', '\t', 'cell type:', real_label[j],  'prec :', each_celltype_top1[j].avg, 'number:', each_celltype_num[j])
+        print('cell type ID: ',j, '\t', '\t', 'cell type:', real_label[j], '\t', '\t', 'prec :', each_celltype_top1[j].avg, 'number:', each_celltype_num[j])
         
     return model,best_each_celltype_top1,each_celltype_num
 
