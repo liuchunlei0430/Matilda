@@ -141,10 +141,10 @@ After training the model, we can use `main_matilda_task.py` to do multiple tasks
 ### Argument for performing tasks
 + `--classification`: whether to do cell type classification.
 + `--fs`: whether to do cell type feature selection.
-+ `--visualisation`: whether to do dimension reduction.
++ `--dim_reduce`: whether to do dimension reduction.
 + `--simulation`: whether to do simulation. 
-+ `--simulation_ct`: whether to do cell type classification. Only be activated when `simulation = True`.
-+ `--simulation_num`: whether to do cell type classification. Only be activated when `simulation = True`.
++ `--simulation_ct`: an integer index for which cell type to simulate. Only be activated when `simulation = True`.
++ `--simulation_num`: the number of cells to simulate for the specified cell type. Only be activated when `simulation = True`.
 
 
 **1) Multi-task on the training data**
@@ -159,12 +159,12 @@ Output: The output will be saved in `./Matilda/output/simulation_result/TEAseq/`
 <img width=60% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/simulation_anchor.jpg"/> 
 
 ```
-# using the trained model for data visualisation
-python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --visualisation True
+# using the trained model for data dimension reduction and visualisation
+python main_matilda_task.py  --rna [trainRNA] --adt [trainADT] --atac [trainATAC] --cty [traincty] --dim_reduce True
 # Example run
-python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --visualisation True
+python main_matilda_task.py --rna ../data/TEAseq/train_rna.h5 --adt ../data/TEAseq/train_adt.h5 --atac ../data/TEAseq/train_atac.h5 --cty ../data/TEAseq/train_cty.csv --dim_reduce True
 ```
-Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
+Output: The output will be saved in `./Matilda/output/dim_reduce/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation.jpg"/> 
 
 ```
@@ -204,13 +204,13 @@ The average classification accuracy is: tensor(76.6730)
 
 
 ```
-# using the trained model for visualising query data
-python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --visualisation True
+# using the trained model for dimension reduction and visualising query data
+python main_matilda_task.py --rna [queryRNA] --adt [queryADT] --atac [queryATAC] --cty [querycty] --dim_reduce True
 # Example run
-python main_matilda_task.py  --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAseq/test_adt.h5 --atac ../data/TEAseq/test_atac.h5 --cty ../data/TEAseq/test_cty.csv --visualisation True
+python main_matilda_task.py  --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAseq/test_adt.h5 --atac ../data/TEAseq/test_atac.h5 --cty ../data/TEAseq/test_cty.csv --dim_reduce True
 ```
 
-Output: The output will be saved in `./Matilda/output/visualisation/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
+Output: The output will be saved in `./Matilda/output/dim_reduce/TEAseq/`. To generate UMAP plots and 4 clustering metrices, i.e., ARI, NMI, FM, Jaccard, for the latent space using R, run `./Matilda/qc/visualize_latent_space.Rmd`. The UMAPs are:
 <img width=50% src="https://github.com/liuchunlei0430/Matilda/blob/main/img/visualisation2.png"/>  
 
 ```
