@@ -16,7 +16,7 @@ from torch.autograd import Variable
 from learn.model import CiteAutoencoder_CITEseq, CiteAutoencoder_SHAREseq, CiteAutoencoder_TEAseq
 from learn.train import train_model
 from learn.predict import test_model
-from util import setup_seed, MyDataset,ToTensor, read_h5_data, read_fs_label, get_vae_simulated_data_from_sampling, get_encodings, compute_zscore, compute_log2
+from util import setup_seed, real_label, MyDataset,ToTensor, read_h5_data, read_fs_label, get_vae_simulated_data_from_sampling, get_encodings, compute_zscore, compute_log2
 
 parser = argparse.ArgumentParser("Matilda")
 parser.add_argument('--seed', type=int, default=1, help='seed')
@@ -80,6 +80,7 @@ output_v = []
 model_save_path = "../trained_model/{}/".format(mode)    
 save_fs_eachcell = "../output/marker/{}/".format(mode)   
 
+transform_real_label = real_label(label_path, classify_dim)
 #######build model#########
 if mode == "CITEseq":
     model = CiteAutoencoder_CITEseq(nfeatures_rna, nfeatures_adt, args.hidden_rna, args.hidden_adt, args.z_dim, classify_dim)
