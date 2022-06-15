@@ -98,7 +98,7 @@ if args.classification == True:
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
         model.load_state_dict(checkpoint['state_dict'], strict=True)
-    model, acc1, num1 = test_model(model, dl, classify_dim = classify_dim)
+    model, acc1, num1 = test_model(model, dl, transform_real_label, classify_dim = classify_dim)
     average1 = torch.mean(torch.Tensor(acc1))
     if not os.path.exists('../output/classification/{}'.format(mode)):
         os.makedirs('../output/classification/{}'.format(mode))
