@@ -25,6 +25,15 @@ def setup_seed(seed):
      torch.backends.cudnn.benchmark = False
      os.environ['PYTHONHASHSEED']=str(seed)
 
+def real_label(label_path,classify_dim):
+    output_v = []
+    label = pd.read_csv(label_path,header=None,index_col=False)  #
+    label = label.iloc[1:(label.shape[0]),1]
+    for i in range(classify_dim):    
+        temp = label[np.array(torch.where(label==i)[0][0].cpu()).astype('int32')+1]
+        output_v.append(temp)
+    return output_v
+
 class MyDataset(Dataset):
     def __init__(self, data, label):
         self.data = data
