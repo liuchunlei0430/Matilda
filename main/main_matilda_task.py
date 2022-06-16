@@ -50,6 +50,11 @@ cuda = True if torch.cuda.is_available() else False
 FloatTensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
 LongTensor = torch.cuda.LongTensor if cuda else torch.LongTensor
 
+if args.query:
+    path = "query"
+else:
+    path = "reference"
+    
 if args.adt != "NULL" and args.atac != "NULL":
     mode = "TEAseq"
     rna_data_path = args.rna
@@ -78,8 +83,8 @@ if args.adt != "NULL" and args.atac != "NULL":
         
 print("The dataset is", mode)    
 output_v = []
-model_save_path = "../trained_model/{}/".format(mode)    
-save_fs_eachcell = "../output/marker/{}/".format(mode)   
+model_save_path = "../trained_model/{}/{}/".format(mode,path)    
+save_fs_eachcell = "../output/marker/{}/{}/".format(mode,path)   
 
 transform_real_label = real_label(label_path, classify_dim)
 #######build model#########
@@ -95,9 +100,9 @@ model = model.cuda() #one gpu
 ########train model#########
 
 if args.classification == True:  
-    if not os.path.exists('../output/classification/{}'.format(mode)):
-        os.makedirs('../output/classification/{}'.format(mode))
-    save_path = open('../output/classification/{}/accuracy_each_ct.txt'.format(mode),"w")
+    if not os.path.exists('../output/classification/{}/{}'.format(mode,path)):
+        os.makedirs('../output/classification/{}/{}'.format(mode,path))
+    save_path = open('../output/classification/{}/{}/accuracy_each_ct.txt'.format(mode,path),"w")
     checkpoint_tar = os.path.join(model_save_path, 'model_best.pth.tar')
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
@@ -113,8 +118,8 @@ if args.simulation == True:
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
         model.load_state_dict(checkpoint['state_dict'], strict=True)
-    if not os.path.exists('../output/simulation_result/{}'.format(mode)):
-        os.makedirs('../output/simulation_result/{}'.format(mode))        
+    if not os.path.exists('../output/simulation_result/{}/{}/'.format(mode,path)):
+        os.makedirs('../output/simulation_result/{}/{}/'.format(mode,path))        
         
     index = (label == args.simulation_ct).nonzero(as_tuple=True)[0]
     aug_fold = int(args.simulation_num/int(index.size(0)))    
@@ -169,10 +174,10 @@ if args.simulation == True:
     sim_data = torch.cat((anchor_data,new_data),0)
     sim_label = torch.cat((anchor_label,new_label.cuda()),0)
 
-    pd.DataFrame(sim_data.cpu().numpy()).to_csv( '../output/simulation_result/{}/sim_data.csv'.format(mode))
-    pd.DataFrame(real_data.cpu().numpy()).to_csv( '../output/simulation_result/{}/real_data.csv'.format(mode))
-    pd.DataFrame(sim_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/sim_label.csv'.format(mode))
-    pd.DataFrame(real_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/real_label.csv'.format(mode))
+    pd.DataFrame(sim_data.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/sim_data.csv'.format(mode,path))
+    pd.DataFrame(real_data.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/real_data.csv'.format(mode,path))
+    pd.DataFrame(sim_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/sim_label.csv'.format(mode,path))
+    pd.DataFrame(real_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/real_label.csv'.format(mode,path))
     
     print("finish simulation")
     
@@ -185,10 +190,10 @@ if args.dim_reduce == True:
     simulated_data_ls[simulated_data_ls>torch.max(data)]=torch.max(data_ls)
     simulated_data_ls[simulated_data_ls<torch.min(data)]=torch.min(data_ls)
     simulated_data_ls[torch.isnan(simulated_data_ls)]=torch.max(data_ls)
-    if not os.path.exists('../output/visualisation/{}'.format(mode)):
-        os.makedirs('../output/visualisation/{}'.format(mode))
-    pd.DataFrame(simulated_data_ls.cpu().numpy()).to_csv( '../output/visualisation/{}/latent_space.csv'.format(mode))
-    pd.DataFrame(label_ls.cpu().numpy()).to_csv('../output/visualisation/{}/latent_space_label.csv'.format(mode))
+    if not os.path.exists('../output/visualisation/{}/{}/'.format(mode,path)):
+        os.makedirs('../output/visualisation/{}/{}/'.format(mode,path))
+    pd.DataFrame(simulated_data_ls.cpu().numpy()).to_csv( '../output/visualisation/{}/{}/latent_space.csv'.format(mode,path))
+    pd.DataFrame(label_ls.cpu().numpy()).to_csv('../output/visualisation/{}/{}/latent_space_label.csv'.format(mode,path))
     print("finish dimension reduction")
 
 if args.fs == True:
