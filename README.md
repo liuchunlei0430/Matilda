@@ -187,19 +187,17 @@ python main_matilda_task.py --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAse
 Output: The output will be saved in `./Matilda/output/classification/TEAseq/query/`.
 
 ```
-The dataset is TEAseq
-cell type :  0 	 	 prec : tensor(72.2454, device='cuda:0') number: 180
-cell type :  1 	 	 prec : tensor(98.1400, device='cuda:0') number: 802
-cell type :  2 	 	 prec : tensor(40., device='cuda:0') number: 11
-cell type :  3 	 	 prec : tensor(98.6156, device='cuda:0') number: 639
-cell type :  4 	 	 prec : tensor(74.1379, device='cuda:0') number: 37
-cell type :  5 	 	 prec : tensor(97.1820, device='cuda:0') number: 283
-cell type :  6 	 	 prec : tensor(45.4545, device='cuda:0') number: 12
-cell type :  7 	 	 prec : tensor(73.3831, device='cuda:0') number: 1189
-cell type :  8 	 	 prec : tensor(76.2363, device='cuda:0') number: 1020
-cell type :  9 	 	 prec : tensor(83.4451, device='cuda:0') number: 576
-cell type :  10 	 	 prec : tensor(84.5635, device='cuda:0') number: 299
-The average classification accuracy is: tensor(76.6730)
+cell type ID:  0                 cell type: B.Activated          prec : tensor(72.2454, device='cuda:0') number: 180
+cell type ID:  1                 cell type: B.Naive              prec : tensor(98.1400, device='cuda:0') number: 802
+cell type ID:  2                 cell type: DC.Myeloid           prec : tensor(40., device='cuda:0') number: 11
+cell type ID:  3                 cell type: Mono.CD14            prec : tensor(98.6156, device='cuda:0') number: 639
+cell type ID:  4                 cell type: Mono.CD16            prec : tensor(74.1379, device='cuda:0') number: 37
+cell type ID:  5                 cell type: NK                   prec : tensor(97.1820, device='cuda:0') number: 283
+cell type ID:  6                 cell type: Platelets            prec : tensor(45.4545, device='cuda:0') number: 12
+cell type ID:  7                 cell type: T.CD4.Memory         prec : tensor(73.3831, device='cuda:0') number: 1189
+cell type ID:  8                 cell type: T.CD4.Naive          prec : tensor(76.2363, device='cuda:0') number: 1020
+cell type ID:  9                 cell type: T.CD8.Effector       prec : tensor(83.4451, device='cuda:0') number: 576
+cell type ID:  10                cell type: T.CD8.Naive          prec : tensor(84.5635, device='cuda:0') number: 299
 ```
 
 
