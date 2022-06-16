@@ -94,16 +94,17 @@ model = model.cuda() #one gpu
 ########train model#########
 
 if args.classification == True:  
+    if not os.path.exists('../output/classification/{}'.format(mode)):
+        os.makedirs('../output/classification/{}'.format(mode))
+    save_path = open('../output/classification/{}/accuracy_each_ct.txt'.format(mode),"w")
     checkpoint_tar = os.path.join(model_save_path, 'model_best.pth.tar')
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
         model.load_state_dict(checkpoint['state_dict'], strict=True)
-    model, acc1, num1 = test_model(model, dl, transform_real_label, classify_dim = classify_dim)
+    model, acc1, num1 = test_model(model, dl, transform_real_label, classify_dim = classify_dim, save_path = save_path)
     average1 = torch.mean(torch.Tensor(acc1))
-    if not os.path.exists('../output/classification/{}'.format(mode)):
-        os.makedirs('../output/classification/{}'.format(mode))
-    pd.DataFrame(acc1).to_csv( '../output/classification/{}/accuracy_each_ct.csv'.format(mode))
-    print("The average classification accuracy is:", average1)
+
+
 
 if args.simulation == True:
     print("simulate celltype",  args.simulation_ct)
