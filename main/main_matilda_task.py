@@ -83,7 +83,7 @@ if args.adt != "NULL" and args.atac != "NULL":
         
 print("The dataset is", mode)    
 output_v = []
-model_save_path = "../trained_model/{}/{}/".format(mode,path)    
+model_save_path = "../trained_model/{}/".format(mode)    
 save_fs_eachcell = "../output/marker/{}/{}/".format(mode,path)   
 
 transform_real_label = real_label(label_path, classify_dim)
