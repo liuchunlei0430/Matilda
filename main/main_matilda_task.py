@@ -21,6 +21,7 @@ from util import setup_seed, real_label, MyDataset,ToTensor, read_h5_data, read_
 parser = argparse.ArgumentParser("Matilda")
 parser.add_argument('--seed', type=int, default=1, help='seed')
 parser.add_argument('--classification', type=bool, default= False, help='if augmentation or not')
+parser.add_argument('--query', type=bool, default= False, help='if the data is query of reference')
 parser.add_argument('--fs', type=bool, default= False, help='if doing feature selection or not')
 parser.add_argument('--dim_reduce', type=bool, default= False, help='save latent space')
 parser.add_argument('--simulation', type=bool, default= False, help='save simulation result')
