@@ -8,7 +8,7 @@ import sys
 import shutil
 from util import AverageMeter,accuracy
 
-def test_model(model, dl, real_label, classify_dim=17):
+def test_model(model, dl, real_label, classify_dim=17, save_path = ""):
     #####set optimizer and criterin#####
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     nsamples_test = 0
@@ -47,7 +47,7 @@ def test_model(model, dl, real_label, classify_dim=17):
 
     for j in range(classify_dim):
         best_each_celltype_top1[j] = each_celltype_top1[j].avg
-        print('cell type ID: ',j, '\t', '\t', 'cell type:', real_label[j], '\t', '\t', 'prec :', each_celltype_top1[j].avg, 'number:', each_celltype_num[j])
+        print('cell type ID: ',j, '\t', '\t', 'cell type:', real_label[j], '\t', '\t', 'prec :', each_celltype_top1[j].avg, 'number:', each_celltype_num[j], file = save_path)
         
     return model,best_each_celltype_top1,each_celltype_num
 
