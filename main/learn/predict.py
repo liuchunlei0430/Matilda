@@ -22,6 +22,9 @@ def test_model(model, dl, real_label, classify_dim=17, save_path = ""):
         best_each_celltype_top1.append(0)
 
     model = model.eval()
+    classified_label = []
+    groundtruth_label = []
+    prob = []
     with torch.no_grad():
         for i, batch_sample in enumerate(dl):
             ###load data
@@ -32,6 +35,13 @@ def test_model(model, dl, real_label, classify_dim=17, save_path = ""):
             test_label = Variable(test_label)
             ###forward process
             x_prime, x_cty,mu, var = model(x.to(device))
+            a = torch.max(nn.Softmax()(x_cty),1)
+            
+            for j in range(x_prime.size(0)):
+                classified_label.append(real_label[a.indices[j]])
+                groundtruth_label.append(real_label[test_label[j]])
+                prob.append(a.values[j])
+               
 
             batch_size = x.shape[0]
             nsamples_test += batch_size
@@ -49,5 +59,5 @@ def test_model(model, dl, real_label, classify_dim=17, save_path = ""):
         best_each_celltype_top1[j] = each_celltype_top1[j].avg
         print('cell type ID: ',j, '\t', '\t', 'cell type:', real_label[j], '\t', '\t', 'prec :', each_celltype_top1[j].avg, 'number:', each_celltype_num[j], file = save_path)
         
-    return model,best_each_celltype_top1,each_celltype_num
+    return model,best_each_celltype_top1,each_celltype_num, classified_label, groundtruth_label,prob
 
