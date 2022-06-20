@@ -79,7 +79,7 @@ if args.adt != "NULL" and args.atac != "NULL":
     atac_data = compute_zscore(atac_data)
     data = torch.cat((rna_data,adt_data,atac_data),1)       
     transformed_dataset = MyDataset(data, label)
-    dl = DataLoader(transformed_dataset, batch_size=args.batch_size, shuffle=True, num_workers=0, drop_last=False)
+    dl = DataLoader(transformed_dataset, batch_size=args.batch_size, shuffle=False, num_workers=0, drop_last=False)
 
         
 print("The dataset is", mode)    
@@ -108,15 +108,22 @@ model = model.cuda() #one gpu
 ########train model#########
 
 if args.classification == True:  
+
+    
+
     if not os.path.exists('../output/classification/{}/{}'.format(mode,path)):
         os.makedirs('../output/classification/{}/{}'.format(mode,path))
     save_path = open('../output/classification/{}/{}/accuracy_each_ct.txt'.format(mode,path),"w")
+    save_path1 = open('../output/classification/{}/{}/accuracy_each_cell.txt'.format(mode,path),"w")
     checkpoint_tar = os.path.join(model_save_path, 'model_best.pth.tar')
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
         model.load_state_dict(checkpoint['state_dict'], strict=True)
-    model, acc1, num1 = test_model(model, dl, transform_real_label, classify_dim = classify_dim, save_path = save_path)
+    model, acc1, num1,classified_label, groundtruth_label,prob = test_model(model, dl, transform_real_label, classify_dim = classify_dim, save_path = save_path)
     average1 = torch.mean(torch.Tensor(acc1))
+    for j in range(len(groundtruth_label)):
+        print('cell ID: ',j, '\t', '\t', 'real cell type:', groundtruth_label[j], '\t', '\t', 'predicted cell type:', classified_label[j], '\t', '\t', 'probability:', round(float(prob[j]),2), file = save_path1)
+    
 
 
 if args.simulation == True:
@@ -320,3 +327,4 @@ if args.fs == True:
         pd.DataFrame(attribution_mean.cpu().numpy(), index = features, columns = [ "importance score"]).to_csv(save_fs_eachcell+"/fs."+"celltype"+str(i)+".csv")
     print("finish feature selection")
     
+
