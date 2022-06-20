@@ -1,5 +1,5 @@
 
-This tutorial take CITE-seq for example. We load the latent space results saved in "../output/latent_space/" folder as input. The output is the umap of latent space and the clustering metrices ARI, NMI, FM, Jaccard.  
+This tutorial take TEA-seq for example. We load the latent space results saved in "../output/dim_reduce/" folder as input. The output is the umap of latent space and the clustering metrices ARI, NMI, FM, Jaccard.  
 
 ## load package
 ```{r}
@@ -21,9 +21,9 @@ make_sce <- function(expr, label){
 ###################umap
 # read simulated data
 ```{r}
-test.sim <- t(fread(glue("../output//visualisation/TEAseq/latent_space.csv")))
+test.sim <- t(fread(glue("../output//dim_reduce/TEAseq/latent_space.csv")))
 test.sim <- test.sim[2:dim(test.sim)[1],]
-test.cty.sim <-  t(fread(glue("../output/visualisation//TEAseq/latent_space_label.csv")))[2,]
+test.cty.sim <-  t(fread(glue("../output/dim_reduce//TEAseq/latent_space_label.csv")))[2,]
 
 colnames(test.sim) <- c(1:dim(test.sim)[2])
 seu_control<- CreateSeuratObject(counts = test.sim)
