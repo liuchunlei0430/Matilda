@@ -17,6 +17,7 @@ from learn.model import CiteAutoencoder_CITEseq, CiteAutoencoder_SHAREseq, CiteA
 from learn.train import train_model
 from learn.predict import test_model
 from util import setup_seed, real_label, MyDataset,ToTensor, read_h5_data, read_fs_label, get_vae_simulated_data_from_sampling, get_encodings, compute_zscore, compute_log2
+import h5py,scipy
 
 parser = argparse.ArgumentParser("Matilda")
 parser.add_argument('--seed', type=int, default=1, help='seed')
@@ -86,6 +87,13 @@ output_v = []
 model_save_path = "../trained_model/{}/".format(mode)    
 save_fs_eachcell = "../output/marker/{}/{}/".format(mode,path)   
 
+
+output_v = []
+
+rna_name  = h5py.File(rna_data_path,"r")['matrix/features'][:]
+adt_name  = h5py.File(adt_data_path,"r")['matrix/features'][:]
+atac_name  = h5py.File(atac_data_path,"r")['matrix/features'][:]
+
 transform_real_label = real_label(label_path, classify_dim)
 #######build model#########
 if mode == "CITEseq":
@@ -109,7 +117,6 @@ if args.classification == True:
         model.load_state_dict(checkpoint['state_dict'], strict=True)
     model, acc1, num1 = test_model(model, dl, transform_real_label, classify_dim = classify_dim, save_path = save_path)
     average1 = torch.mean(torch.Tensor(acc1))
-
 
 
 if args.simulation == True:
@@ -173,12 +180,71 @@ if args.simulation == True:
     real_label = label
     sim_data = torch.cat((anchor_data,new_data),0)
     sim_label = torch.cat((anchor_label,new_label.cuda()),0)
+    sim_data_rna = sim_data[:, 0:nfeatures_rna]
+    real_data_rna = real_data[:, 0:nfeatures_rna]   
+    if mode == "CITEseq":
+        sim_data_adt = sim_data[:, nfeatures_rna:(nfeatures_rna+nfeatures_adt)]
+        real_data_adt = real_data[:, nfeatures_rna:(nfeatures_rna+nfeatures_adt)]
+    elif mode == "SHAREseq":
+        sim_data_atac = sim_data[:, (nfeatures_rna+nfeatures_adt):(nfeatures_rna+nfeatures_adt+nfeatures_atac)]
+        real_data_atac = real_data[:, (nfeatures_rna+nfeatures_adt):(nfeatures_rna+nfeatures_adt+nfeatures_atac)]
+    elif mode == "TEAseq":
+        sim_data_adt = sim_data[:, nfeatures_rna:(nfeatures_rna+nfeatures_adt)]
+        sim_data_atac = sim_data[:, (nfeatures_rna+nfeatures_adt):(nfeatures_rna+nfeatures_adt+nfeatures_atac)]
+        real_data_adt = real_data[:, nfeatures_rna:(nfeatures_rna+nfeatures_adt)]
+        real_data_atac = real_data[:, (nfeatures_rna+nfeatures_adt):(nfeatures_rna+nfeatures_adt+nfeatures_atac)]
 
-    pd.DataFrame(sim_data.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/sim_data.csv'.format(mode,path))
-    pd.DataFrame(real_data.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/real_data.csv'.format(mode,path))
-    pd.DataFrame(sim_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/sim_label.csv'.format(mode,path))
-    pd.DataFrame(real_label.cpu().numpy()).to_csv( '../output/simulation_result/{}/{}/real_label.csv'.format(mode,path))
+    rna_name_new = []
+    adt_name_new = []
+    atac_name_new = []
     
+    b_list = range(0, real_data_rna.size(0))
+    cell_name_real = ['cell_{}'.format(b) for b in b_list]
+    b_list = range(0, sim_data_rna.size(0))
+    cell_name_sim = ['cell_{}'.format(b) for b in b_list]
+    sim_label_new = []
+    real_label_new = []
+    for j in range(sim_data_rna.size(0)):
+        sim_label_new.append(transform_real_label[sim_label[j]])
+    for j in range(real_data_rna.size(0)):    
+        real_label_new.append(transform_real_label[real_label[j]])
+    for i in range(sim_data_rna.size(1)):
+        a = str(rna_name[i],encoding="utf-8")
+        rna_name_new.append(a)           
+        
+    if mode == "CITEseq":
+        for i in range(sim_data_adt.size(1)):
+            a = str(adt_name[i],encoding="utf-8")
+            adt_name_new.append(a)
+        pd.DataFrame(sim_data_adt.cpu().numpy(), index = cell_name_sim, columns = adt_name_new).to_csv( '../output/simulation_result/{}/{}/sim_data_adt.csv'.format(mode,path))
+        pd.DataFrame(real_data_adt.cpu().numpy(), index = cell_name_real, columns = adt_name_new).to_csv( '../output/simulation_result/{}/{}/real_data_adt.csv'.format(mode,path))
+
+        
+    if mode == "SHAREseq":
+        for i in range(sim_data_atac.size(1)):
+            a = str(atac_name[i],encoding="utf-8")
+            atac_name_new.append(a)           
+        pd.DataFrame(sim_data_atac.cpu().numpy(), index = cell_name_sim, columns = atac_name_new).to_csv( '../output/simulation_result/{}/{}/sim_data_atac.csv'.format(mode,path))
+        pd.DataFrame(real_data_atac.cpu().numpy(), index = cell_name_real, columns = atac_name_new).to_csv( '../output/simulation_result/{}/{}/real_data_atac.csv'.format(mode,path))
+
+        
+    if mode == "TEAseq":
+        for i in range(sim_data_adt.size(1)):
+            a = str(adt_name[i],encoding="utf-8")
+            adt_name_new.append(a)
+        for i in range(sim_data_atac.size(1)):
+            a = str(atac_name[i],encoding="utf-8")
+            atac_name_new.append(a)            
+        pd.DataFrame(sim_data_adt.cpu().numpy(), index = cell_name_sim, columns = adt_name_new).to_csv( '../output/simulation_result/{}/{}/sim_data_adt.csv'.format(mode,path))
+        pd.DataFrame(real_data_adt.cpu().numpy(), index = cell_name_real, columns = adt_name_new).to_csv( '../output/simulation_result/{}/{}/real_data_adt.csv'.format(mode,path))
+        pd.DataFrame(sim_data_atac.cpu().numpy(), index = cell_name_sim, columns = atac_name_new).to_csv( '../output/simulation_result/{}/{}/sim_data_atac.csv'.format(mode,path))
+        pd.DataFrame(real_data_atac.cpu().numpy(), index = cell_name_real, columns = atac_name_new).to_csv( '../output/simulation_result/{}/{}/real_data_atac.csv'.format(mode,path))
+
+    pd.DataFrame(sim_data_rna.cpu().numpy(), index = cell_name_sim, columns = rna_name_new).to_csv( '../output/simulation_result/{}/{}/sim_data_rna.csv'.format(mode,path))
+    pd.DataFrame(real_data_rna.cpu().numpy(), index = cell_name_real, columns = rna_name_new).to_csv( '../output/simulation_result/{}/{}/real_data_rna.csv'.format(mode,path))
+    pd.DataFrame(sim_label_new,  index = cell_name_sim, columns = [ "label"]).to_csv( '../output/simulation_result/{}/{}/sim_label.csv'.format(mode,path))
+    pd.DataFrame(real_label_new,  index = cell_name_real, columns = [ "label"]).to_csv( '../output/simulation_result/{}/{}/real_label.csv'.format(mode,path))
+
     print("finish simulation")
     
 if args.dim_reduce == True:
@@ -190,13 +256,47 @@ if args.dim_reduce == True:
     simulated_data_ls[simulated_data_ls>torch.max(data)]=torch.max(data_ls)
     simulated_data_ls[simulated_data_ls<torch.min(data)]=torch.min(data_ls)
     simulated_data_ls[torch.isnan(simulated_data_ls)]=torch.max(data_ls)
-    if not os.path.exists('../output/visualisation/{}/{}/'.format(mode,path)):
-        os.makedirs('../output/visualisation/{}/{}/'.format(mode,path))
-    pd.DataFrame(simulated_data_ls.cpu().numpy()).to_csv( '../output/visualisation/{}/{}/latent_space.csv'.format(mode,path))
-    pd.DataFrame(label_ls.cpu().numpy()).to_csv('../output/visualisation/{}/{}/latent_space_label.csv'.format(mode,path))
+    if not os.path.exists('../output/dim_reduce/{}/{}/'.format(mode,path)):
+        os.makedirs('../output/dim_reduce/{}/{}/'.format(mode,path))
+    b_list = range(0, simulated_data_ls.size(1))
+    feature_index = ['feature_{}'.format(b) for b in b_list]   
+    b_list = range(0, data.size(0))
+    cell_name_real = ['cell_{}'.format(b) for b in b_list]  
+    
+    real_label_new = []
+    for j in range(data.size(0)):    
+        real_label_new.append(transform_real_label[label[j]])
+            
+    pd.DataFrame(simulated_data_ls.cpu().numpy(), index = cell_name_real, columns = feature_index).to_csv( '../output/dim_reduce/{}/{}/latent_space.csv'.format(mode,path))
+    pd.DataFrame(real_label_new, index = cell_name_real, columns = [ "label"]).to_csv('../output/dim_reduce/{}/{}/latent_space_label.csv'.format(mode,path))
     print("finish dimension reduction")
 
 if args.fs == True:
+    rna_name_new = []
+    adt_name_new = []
+    atac_name_new = []
+    for i in range(nfeatures_rna):
+        a = str(rna_name[i],encoding="utf-8")
+        rna_name_new.append(a)
+    if mode == "CITEseq":
+        for i in range(nfeatures_adt):
+            a = str(adt_name[i],encoding="utf-8")
+            adt_name_new.append(a)
+        features = rna_name_new + adt_name_new
+    if mode == "SHAREseq":
+        for i in range(nfeatures_atac):
+            a = str(atac_name[i],encoding="utf-8")
+            atac_name_new.append(a)
+        features = rna_name_new + atac_name_new
+    if mode == "TEAseq":
+        for i in range(nfeatures_adt):
+            a = str(adt_name[i],encoding="utf-8")
+            adt_name_new.append(a)
+        for i in range(nfeatures_atac):
+            a = str(atac_name[i],encoding="utf-8")
+            atac_name_new.append(a)
+        features = rna_name_new + adt_name_new + atac_name_new
+        
     checkpoint_tar = os.path.join(model_save_path, 'model_best.pth.tar')
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
@@ -217,8 +317,6 @@ if args.fs == True:
 
         if not os.path.exists(save_fs_eachcell):
             os.makedirs(save_fs_eachcell)   
-        pd.DataFrame(attribution_mean.cpu().numpy()).to_csv(save_fs_eachcell+"/fs."+"celltype"+str(i)+".csv")
+        pd.DataFrame(attribution_mean.cpu().numpy(), index = features, columns = [ "importance score"]).to_csv(save_fs_eachcell+"/fs."+"celltype"+str(i)+".csv")
     print("finish feature selection")
     
-            
-
