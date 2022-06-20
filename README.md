@@ -187,6 +187,19 @@ python main_matilda_task.py --rna ../data/TEAseq/test_rna.h5 --adt ../data/TEAse
 Output: The output will be saved in `./Matilda/output/classification/TEAseq/query/`.
 
 ```
+cell ID:  0 	 	 real cell type: T.CD4.Memory 	 	 predicted cell type: T.CD4.Naive 	 	 probability: 0.77
+cell ID:  1 	 	 real cell type: B.Activated 	 	   predicted cell type: B.Activated 	 	 probability: 0.53
+cell ID:  2 	 	 real cell type: B.Naive 	 	       predicted cell type: B.Naive 	 	     probability: 0.73
+cell ID:  3 	 	 real cell type: T.CD4.Naive 	 	   predicted cell type: T.CD4.Naive 	 	 probability: 0.78
+cell ID:  4 	 	 real cell type: T.CD4.Memory 	 	 predicted cell type: T.CD4.Memory 	 	 probability: 0.87
+cell ID:  5 	 	 real cell type: Mono.CD14 	 	     predicted cell type: Mono.CD14 	 	   probability: 0.95
+cell ID:  6 	 	 real cell type: B.Naive 	 	       predicted cell type: B.Naive 	 	     probability: 0.78
+cell ID:  7 	 	 real cell type: Mono.CD14 	 	     predicted cell type: Mono.CD14 	 	   probability: 0.96
+cell ID:  8 	 	 real cell type: T.CD8.Effector 	 predicted cell type: T.CD8.Effector 	 probability: 0.95
+……
+```
+
+```
 cell type ID:  0                 cell type: B.Activated          prec : tensor(72.2454, device='cuda:0') number: 180
 cell type ID:  1                 cell type: B.Naive              prec : tensor(98.1400, device='cuda:0') number: 802
 cell type ID:  2                 cell type: DC.Myeloid           prec : tensor(40., device='cuda:0') number: 11
