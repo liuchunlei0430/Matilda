@@ -37,12 +37,12 @@ colnames(train.rna.real)<-glue("sim_{c(1:dim(train.rna.real)[2])}")
 
 train.cty.real <-  t(fread(glue("../output/simulation_result/{dataset_name}/reference/real_label.csv")))[2,]  #label information
 train.cty.real <- train.cty.real[2:length(train.cty.real)]
-train.cty.real[train.cty.real!="B.Naive"] = "other celltypes" 
-train.cty.real[train.cty.real=="B.Naive"] = "anchor celltype"
+train.cty.real[train.cty.real!="B.Naive"] = "other cell types" 
+train.cty.real[train.cty.real=="B.Naive"] = "anchor cell type"
 train.cty.sim <-  t(fread(glue("../output/simulation_result/{dataset_name}/reference/sim_label.csv")))[2,]  #label information
 train.cty.sim <- train.cty.sim[2:length(train.cty.sim)]
-train.cty.sim[train.cty.sim!="B.Naive"] = "other celltypes" 
-train.cty.sim[train.cty.sim=="B.Naive"] = "anchor celltype" 
+train.cty.sim[train.cty.sim!="B.Naive"] = "other cell types" 
+train.cty.sim[train.cty.sim=="B.Naive"] = "anchor cell type" 
 ```
 
 Then, do umap for real and simulated RNA data
@@ -89,12 +89,12 @@ colnames(train.adt.real)<-glue("sim_{c(1:dim(train.adt.real)[2])}")
 
 train.cty.real <-  t(fread(glue("../output/simulation_result/{dataset_name}/reference/real_label.csv")))[2,]  #label information
 train.cty.real <- train.cty.real[2:length(train.cty.real)]
-train.cty.real[train.cty.real!="B.Naive"] = "other celltypes" 
-train.cty.real[train.cty.real=="B.Naive"] = "anchor celltype"
+train.cty.real[train.cty.real!="B.Naive"] = "other cell types" 
+train.cty.real[train.cty.real=="B.Naive"] = "anchor cell type"
 train.cty.sim <-  t(fread(glue("../output/simulation_result/{dataset_name}/reference/sim_label.csv")))[2,]  #label information
 train.cty.sim <- train.cty.sim[2:length(train.cty.sim)]
-train.cty.sim[train.cty.sim!="B.Naive"] = "other celltypes" 
-train.cty.sim[train.cty.sim=="B.Naive"] = "anchor celltype" 
+train.cty.sim[train.cty.sim!="B.Naive"] = "other cell types" 
+train.cty.sim[train.cty.sim=="B.Naive"] = "anchor cell type" 
 ```
 
 Then, do umap for real and simulated ADT data
@@ -139,12 +139,12 @@ colnames(train.atac.real)<-glue("sim_{c(1:dim(train.atac.real)[2])}")
 
 train.cty.real <-  t(fread(glue("../output/simulation_result/{dataset_name}/reference/real_label.csv")))[2,]  #label information
 train.cty.real <- train.cty.real[2:length(train.cty.real)]
-train.cty.real[train.cty.real!="B.Naive"] = "other celltypes" 
-train.cty.real[train.cty.real=="B.Naive"] = "anchor celltype"
+train.cty.real[train.cty.real!="B.Naive"] = "other cell types" 
+train.cty.real[train.cty.real=="B.Naive"] = "anchor cell type"
 train.cty.sim <-  t(fread(glue("../output/simulation_result/{dataset_name}/reference/sim_label.csv")))[2,]  #label information
 train.cty.sim <- train.cty.sim[2:length(train.cty.sim)]
-train.cty.sim[train.cty.sim!="B.Naive"] = "other celltypes" 
-train.cty.sim[train.cty.sim=="B.Naive"] = "anchor celltype" 
+train.cty.sim[train.cty.sim!="B.Naive"] = "other cell types" 
+train.cty.sim[train.cty.sim=="B.Naive"] = "anchor cell type" 
 ```
 
 Then, do umap for real and simulated ATAC data
