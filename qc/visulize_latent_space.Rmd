@@ -21,9 +21,10 @@ make_sce <- function(expr, label){
 ###################umap
 # read simulated data
 ```{r}
-test.sim <- t(fread(glue("../output//dim_reduce/TEAseq/latent_space.csv")))
+test.sim <- t(fread(glue("../output//dim_reduce/TEAseq/reference/latent_space.csv")))
 test.sim <- test.sim[2:dim(test.sim)[1],]
-test.cty.sim <-  t(fread(glue("../output/dim_reduce//TEAseq/latent_space_label.csv")))[2,]
+test.cty.sim <-  t(fread(glue("../output/dim_reduce//TEAseq/reference/latent_space_label.csv")))[2,]
+test.cty.sim <- test.cty.sim[2:length(test.cty.sim)]
 
 colnames(test.sim) <- c(1:dim(test.sim)[2])
 seu_control<- CreateSeuratObject(counts = test.sim)
