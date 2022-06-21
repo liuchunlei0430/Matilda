@@ -127,7 +127,7 @@ if args.classification == True:
 
 
 if args.simulation == True:
-    print("simulate celltype",  args.simulation_ct)
+    print("simulate celltype index:",  args.simulation_ct, "\t",  "cell type name:", transform_real_label[args.simulation_ct])
     checkpoint_tar = os.path.join(model_save_path, 'simulation_model_best.pth.tar')
     if os.path.exists(checkpoint_tar):
         checkpoint = torch.load(checkpoint_tar)
