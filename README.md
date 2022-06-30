@@ -102,6 +102,7 @@ gene.activities <- CreateGeneActivityMatrix2(peak.matrix=teaseq.peak,
 
 As an example, the processed TEA-seq dataset by Swanson et al. (GSE158013) is provided for the example run, which is saved in `./Matilda/data/TEAseq`.
 Users can prepare the example dataset as input for Matilda or use their own datasets.
+Training and testing on demo dataset will cost no more than 1 minute with GPU.
 
 ## Running Matilda with the example dataset
 ### Training the Matilda model (see Arguments section for more details).
