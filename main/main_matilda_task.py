@@ -24,6 +24,7 @@ parser.add_argument('--seed', type=int, default=1, help='seed')
 parser.add_argument('--classification', type=bool, default= False, help='if augmentation or not')
 parser.add_argument('--query', type=bool, default= False, help='if the data is query of reference')
 parser.add_argument('--fs', type=bool, default= False, help='if doing feature selection or not')
+parser.add_argument('--fs_method', type=str, default= "IntegratedGradient", help='choose the feature selection method')
 parser.add_argument('--dim_reduce', type=bool, default= False, help='save latent space')
 parser.add_argument('--simulation', type=bool, default= False, help='save simulation result')
 parser.add_argument('--simulation_ct', type=int, default= 1, help='save simulation result')
@@ -310,7 +311,12 @@ if args.fs == True:
         model.load_state_dict(checkpoint['state_dict'], strict=True)
         
     classify_model = nn.Sequential(*list(model.children()))[0:2]
-    deconv = IntegratedGradients(classify_model)
+    
+    if args.fs_method = "Saliency":
+        deconv = Saliency(classify_model)
+    else:
+        deconv = IntegratedGradients(classify_model)
+        
     for i in range(classify_dim):
         train_index_fs= torch.where(label==i)
         train_index_fs = [t.cpu().numpy() for t in train_index_fs]
